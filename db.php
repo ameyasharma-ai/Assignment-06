@@ -3,13 +3,33 @@
 // Supports both SQLite (default for easy setup) and MySQL.
 
 if (!defined('DB_TYPE')) {
-    define('DB_TYPE', 'sqlite'); // Change to 'mysql' to use a MySQL server
+    define('DB_TYPE', getenv('DB_TYPE') ?: 'mysql'); 
 }
 
-define('DB_HOST', '127.0.0.1');
-define('DB_NAME', 'omnimart');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+// Default values (can be overridden by Environment variables or local config)
+$db_host = getenv('DB_HOST') ?: '127.0.0.1';
+$db_port = getenv('DB_PORT') ?: '3306';
+$db_name = getenv('DB_NAME') ?: 'omnimart';
+$db_user = getenv('DB_USER') ?: 'root';
+$db_pass = getenv('DB_PASS') ?: '';
+
+// Load local database config file if present (ignored by Git)
+if (file_exists(__DIR__ . '/db_config.php')) {
+    $local_cfg = include __DIR__ . '/db_config.php';
+    if (is_array($local_cfg)) {
+        $db_host = $local_cfg['host'] ?? $db_host;
+        $db_port = $local_cfg['port'] ?? $db_port;
+        $db_name = $local_cfg['name'] ?? $db_name;
+        $db_user = $local_cfg['user'] ?? $db_user;
+        $db_pass = $local_cfg['pass'] ?? $db_pass;
+    }
+}
+
+define('DB_HOST', $db_host);
+define('DB_PORT', $db_port);
+define('DB_NAME', $db_name);
+define('DB_USER', $db_user);
+define('DB_PASS', $db_pass);
 
 function getDBConnection() {
     static $pdo = null;
@@ -25,7 +45,7 @@ function getDBConnection() {
             // Enable foreign keys in SQLite
             $pdo->exec("PRAGMA foreign_keys = ON;");
         } else {
-            $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4";
+            $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=utf8mb4";
             $pdo = new PDO($dsn, DB_USER, DB_PASS, [
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"
             ]);

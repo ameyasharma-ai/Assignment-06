@@ -6,6 +6,7 @@ php_errors.log
 
 # Exclude databases (we initialize clean databases on the persistent volume)
 omnimart.db
+db_config.php
 
 # Exclude git & agent configurations
 .git/

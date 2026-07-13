@@ -8,6 +8,7 @@ php_errors.log
 
 # Databases
 omnimart.db
+db_config.php
 
 # OS files
 Thumbs.db
