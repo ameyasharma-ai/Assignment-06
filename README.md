@@ -6,6 +6,12 @@ The platform runs on a dual-driver PDO system supporting both SQLite and MySQL, 
 
 ---
 
+## 🌐 Live Demo
+The application is deployed and live at:
+👉 **[https://assignment-06-en2a.onrender.com/](https://assignment-06-en2a.onrender.com/)**
+
+---
+
 ## 🌟 Key Features
 
 ### 🛒 Customer Storefront
