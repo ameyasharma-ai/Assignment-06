@@ -10,6 +10,10 @@ php_errors.log
 omnimart.db
 db_config.php
 
+# Deploy Guides
+FLY_DEPLOY_GUIDE.md
+RENDER_DEPLOY_GUIDE.md
+
 # OS files
 Thumbs.db
 desktop.ini
