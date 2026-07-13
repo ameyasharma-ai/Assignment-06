@@ -13,6 +13,6 @@ if ($pass === false) {
 } elseif ($pass === '') {
     echo "DB_PASS: EMPTY STRING\n";
 } else {
-    // Obfuscate the password but show length and boundary characters for diagnostic validation
-    echo "DB_PASS: SET (Length: " . strlen($pass) . ", Prefix: '" . substr($pass, 0, 5) . "', Suffix: '" . substr($pass, -5) . "')\n";
+    // Obfuscate the password but show length, MD5, and boundary characters
+    echo "DB_PASS: SET (Length: " . strlen($pass) . ", MD5: " . md5($pass) . ", Prefix: '" . substr($pass, 0, 5) . "', Suffix: '" . substr($pass, -5) . "')\n";
 }
