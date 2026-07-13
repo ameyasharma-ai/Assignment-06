@@ -3,7 +3,7 @@ FROM php:8.2-apache
 # Install SQLite dependencies and build database extensions
 RUN apt-get update && apt-get install -y \
     libsqlite3-dev \
-    && docker-php-ext-install pdo pdo_sqlite \
+    && docker-php-ext-install pdo pdo_sqlite pdo_mysql \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy workspace directories into the Apache DocumentRoot
