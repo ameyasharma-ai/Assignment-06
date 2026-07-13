@@ -1,0 +1,19 @@
+# Exclude local runtime environments
+.php/
+.flyctl/
+php.zip
+php_errors.log
+
+# Exclude databases (we initialize clean databases on the persistent volume)
+omnimart.db
+
+# Exclude git & agent configurations
+.git/
+.agents/
+.gemini/
+task.md
+implementation_plan.md
+walkthrough.md
+Dockerfile
+.dockerignore
+fly.toml
